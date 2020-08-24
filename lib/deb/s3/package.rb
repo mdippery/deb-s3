@@ -280,6 +280,7 @@ class Deb::S3::Package
     value = ""
     {}.tap do |fields|
       control.each_line do |line|
+        line = line.encode('UTF-8', invalid: :replace)
         if line =~ /^(\s+)(\S.*)$/
           indent, rest = $1, $2
           # Continuation

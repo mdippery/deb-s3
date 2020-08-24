@@ -49,7 +49,7 @@ class Deb::S3::Manifest
 
     def parse_packages(str)
       m = self.new
-      str.split("\n\n").each do |s|
+      str.encode('UTF-8', invalid: :replace).split("\n\n").each do |s|
         next if s.chomp.empty?
         m.packages << Deb::S3::Package.parse_string(s)
       end
